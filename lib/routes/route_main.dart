@@ -10,7 +10,7 @@ class MainRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Screen(
-    title: 'Pokedéx',
+    title: 'Pokédex',
     child: Column(
       children: [
         SearchBar(),
