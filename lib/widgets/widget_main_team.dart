@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdex/models/team_data.dart';
+import 'package:flutterdex/models/card_content_team.dart';
 import 'package:flutterdex/widgets/widget_card_team.dart';
 
 class MainTeam extends StatelessWidget {
@@ -12,7 +12,7 @@ class MainTeam extends StatelessWidget {
     child: Column(
       children: [
         Text('Seu time', style: TextStyle(fontSize: 20)),
-        TeamCard(team: Team('Champion Red (HG/SS)', [ // TODO Fetch async
+        TeamCard(team: TeamCardContent('Champion Red (HG/SS)', [ // TODO Fetch async
           _getImage('pikachu'),
           _getImage('lapras'),
           _getImage('snorlax'),
