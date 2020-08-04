@@ -34,7 +34,7 @@ class PokemonCard extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(top: 16),
-            child: Text(_content.name, style: TextStyle(fontSize: 16)),
+            child: Text(_content.name, style: TextStyle(fontSize: 18)),
           )
         ],
       ),
