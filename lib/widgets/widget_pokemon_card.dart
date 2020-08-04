@@ -13,31 +13,17 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Card(
-    child: Container(
-      margin: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Card(
-            elevation: 3,
-            shape: CircleBorder(),
-            child: Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 4,
-                  color: Colors.black12
-                )
-              ),
-              child: _content.image,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 16),
-            child: Text(_content.name, style: TextStyle(fontSize: 18)),
-          )
-        ],
-      ),
+    child: Column(
+      children: [
+        Container(
+          child: _content.image,
+        ),
+        Divider(thickness: 2, color: Colors.black12),
+        Container(
+          margin: EdgeInsets.only(top: 4, bottom: 12),
+          child: Text(_content.name, style: TextStyle(fontSize: 18)),
+        )
+      ],
     ),
   );
 
