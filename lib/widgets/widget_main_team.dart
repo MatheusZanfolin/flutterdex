@@ -12,7 +12,7 @@ class MainTeam extends StatelessWidget {
     child: Column(
       children: [
         Text('Seu time', style: TextStyle(fontSize: 20)),
-        TeamCard(team: TeamCardContent('Champion Red (HG/SS)', [ // TODO Fetch async
+        TeamCard(TeamCardContent('Champion Red (HG/SS)', [ // TODO Fetch async
           _getImage('pikachu'),
           _getImage('lapras'),
           _getImage('snorlax'),

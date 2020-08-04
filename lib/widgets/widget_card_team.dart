@@ -5,9 +5,9 @@ import 'package:flutterdex/models/card_content_team.dart';
 
 class TeamCard extends StatelessWidget {
 
-  final TeamCardContent team;
+  final TeamCardContent _team;
   
-  TeamCard({@required this.team});
+  TeamCard(this._team);
 
   @override
   Widget build(BuildContext context) => Card(
@@ -19,7 +19,7 @@ class TeamCard extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(top: 16, left: 8),
-            child: Text(team.name, style: TextStyle(fontSize: 18))
+            child: Text(_team.name, style: TextStyle(fontSize: 18))
           ),
           Container(
             margin: EdgeInsets.only(top: 16, bottom: 8),
@@ -28,9 +28,9 @@ class TeamCard extends StatelessWidget {
               height: 32,
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: team.pokemons.length,
+                itemCount: _team.pokemons.length,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => team.pokemons[index],
+                itemBuilder: (context, index) => _team.pokemons[index],
               ),
             )
           )
