@@ -15,6 +15,7 @@ class TeamCard extends StatelessWidget {
       Expanded(
         child: Card(
           child: Container(
+            decoration: buildCardDecoration(),
             child: Column(
               children: [
                 Container(
@@ -31,9 +32,8 @@ class TeamCard extends StatelessWidget {
                 ),
                 Divider(thickness: 2, color: Colors.black12),
                 Container(
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 4, bottom: 12, left: 16),
-                  child: Text(_team.name, style: TextStyle(fontSize: 18))
+                  margin: EdgeInsets.fromLTRB(16, 4, 16, 10),
+                  child: buildCardFooter()
                 ),
               ],
             ),
@@ -42,5 +42,61 @@ class TeamCard extends StatelessWidget {
       ),
     ],
   );
+
+  Widget buildCardFooter() {
+    if (_team.isInteractive) {
+      return buildInteractiveFooter();
+    } else {
+      return buildTeamName();
+    }
+  }
+
+  Widget buildInteractiveFooter() => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      buildTeamName(),
+      buildInteractionIcons()
+    ],
+  );
+
+  Decoration buildCardDecoration() {
+    if (_team.isMain) {
+      return BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(
+          width: 2,
+          color: Colors.green
+        )
+      );
+    } else {
+      return BoxDecoration();
+    }
+  }
+
+  Widget buildTeamName() => Container(
+    alignment: Alignment.centerLeft,
+    child: Text(_team.name, style: TextStyle(fontSize: 18))
+  );
+
+  Widget buildInteractionIcons() => Container(
+    alignment: Alignment.centerRight,
+    child: Row(
+      children: [
+        Container(
+          margin: EdgeInsets.only(right: 10),
+          child: Icon(Icons.delete)
+        ),
+        buildMainTeamIcon()
+      ],
+    ),
+  );
+
+  Widget buildMainTeamIcon() {
+    if (_team.isMain) {
+      return Icon(Icons.check, color: Colors.green);
+    } else {
+      return Icon(Icons.check);
+    }
+  }
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdex/models/card_content_team.dart';
 import 'package:flutterdex/widgets/widget_card_team.dart';
+import 'package:flutterdex/widgets/widget_pokemon_icon.dart';
 
 class MainTeam extends StatelessWidget {
 
@@ -13,21 +14,15 @@ class MainTeam extends StatelessWidget {
       children: [
         Text('Seu time', style: TextStyle(fontSize: 20)),
         TeamCard(TeamCardContent('Champion Red (HG/SS)', [ // TODO Fetch async
-          _getImage('pikachu'),
-          _getImage('lapras'),
-          _getImage('snorlax'),
-          _getImage('venusaur'),
-          _getImage('charizard'),
-          _getImage('blastoise'),
-        ]))
+          PokemonIcon('pikachu'),
+          PokemonIcon('lapras'),
+          PokemonIcon('snorlax'),
+          PokemonIcon('venusaur'),
+          PokemonIcon('charizard'),
+          PokemonIcon('blastoise'),
+        ], isInteractive: false))
       ],
     ),
-  );
-
-  Image _getImage(String pokemon) => Image.asset('assets/$pokemon.png',
-    width: 48,
-    height: 48,
-    fit: BoxFit.fill,
   );
 
 }
