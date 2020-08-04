@@ -32,7 +32,7 @@ class TeamCard extends StatelessWidget {
                 Divider(thickness: 2, color: Colors.black12),
                 Container(
                   alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(top: 8, bottom: 16, left: 16),
+                  margin: EdgeInsets.only(top: 4, bottom: 12, left: 16),
                   child: Text(_team.name, style: TextStyle(fontSize: 18))
                 ),
               ],
