@@ -55,11 +55,11 @@ class _MainRouteState extends State<MainRoute> {
     _selectedTab = index;
   });
 
-  void _onTabSelected(index) => setState(() {
-    _selectedTab = index;
-
-    pages.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-  });
+  void _onTabSelected(index) => pages.animateToPage(
+    index,
+    duration: Duration(milliseconds: 500),
+    curve: Curves.easeOut
+  );
 
   @override
   void dispose() {
