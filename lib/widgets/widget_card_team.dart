@@ -10,33 +10,37 @@ class TeamCard extends StatelessWidget {
   TeamCard(this._team);
 
   @override
-  Widget build(BuildContext context) => Card(
-    child: Container(
-      margin: EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 16, left: 8),
-            child: Text(_team.name, style: TextStyle(fontSize: 18))
+  Widget build(BuildContext context) => Row(
+    children: <Widget>[
+      Expanded(
+        child: Card(
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 16, bottom: 16),
+                  child: SizedBox(
+                    height: 32,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _team.pokemons.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => _team.pokemons[index],
+                    ),
+                  )
+                ),
+                Divider(thickness: 2, color: Colors.black12),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.only(top: 8, bottom: 16, left: 16),
+                  child: Text(_team.name, style: TextStyle(fontSize: 18))
+                ),
+              ],
+            ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 16, bottom: 8),
-            alignment: Alignment.centerLeft,
-            child: SizedBox(
-              height: 32,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _team.pokemons.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => _team.pokemons[index],
-              ),
-            )
-          )
-        ],
+        ),
       ),
-    ),
+    ],
   );
 
 }
