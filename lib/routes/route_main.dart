@@ -27,6 +27,7 @@ class _MainRouteState extends State<MainRoute> {
   @override
   Widget build(BuildContext context) => Scaffold(
     body: PageView(
+      onPageChanged: _onPageChanged,
       controller: pages,
       children: _tabs,
     ),
@@ -49,6 +50,10 @@ class _MainRouteState extends State<MainRoute> {
       ],
     ),
   );
+
+  void _onPageChanged(index) => setState(() {
+    _selectedTab = index;
+  });
 
   void _onTabSelected(index) => setState(() {
     _selectedTab = index;
