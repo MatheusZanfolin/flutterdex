@@ -54,42 +54,32 @@ class TeamCard extends StatelessWidget {
   Widget buildInteractiveFooter() => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
+      Icon(Icons.delete),
       buildTeamName(),
-      buildInteractionIcons()
+      buildMainTeamIcon()
+    ],
+  );
+
+  Widget buildTeamName() => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(_team.name, style: TextStyle(fontSize: 18))
     ],
   );
 
   Decoration buildCardDecoration() {
     if (_team.isMain) {
       return BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          width: 2,
-          color: Colors.green
-        )
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            width: 2,
+            color: Colors.green
+          )
       );
     } else {
       return BoxDecoration();
     }
   }
-
-  Widget buildTeamName() => Container(
-    alignment: Alignment.centerLeft,
-    child: Text(_team.name, style: TextStyle(fontSize: 18))
-  );
-
-  Widget buildInteractionIcons() => Container(
-    alignment: Alignment.centerRight,
-    child: Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10),
-          child: Icon(Icons.delete)
-        ),
-        buildMainTeamIcon()
-      ],
-    ),
-  );
 
   Widget buildMainTeamIcon() {
     if (_team.isMain) {
