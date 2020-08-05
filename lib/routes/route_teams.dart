@@ -1,12 +1,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdex/models/card_content_pokemon.dart';
 import 'package:flutterdex/models/card_content_team.dart';
 import 'package:flutterdex/widgets/widget_card_team.dart';
 import 'package:flutterdex/widgets/widget_pokemon_icon.dart';
 import 'package:flutterdex/widgets/widget_screen.dart';
 
 class TeamsRoute extends StatelessWidget {
+
+  final List<TeamCardContent> _teams = getTeams();
 
   @override
   Widget build(BuildContext context) => MainScreen(
@@ -17,10 +20,10 @@ class TeamsRoute extends StatelessWidget {
           ListView.builder(
             padding: EdgeInsets.only(top: 0),
             shrinkWrap: true,
-            itemCount: 2,
+            itemCount: _teams.length,
             itemBuilder: (context, index) => Container(
               margin: EdgeInsets.only(bottom: 8),
-              child: TeamCard(getContent(index))
+              child: TeamCard(_teams[index])
             )
           ),
           FloatingActionButton(
@@ -32,11 +35,12 @@ class TeamsRoute extends StatelessWidget {
     ),
   );
 
-  TeamCardContent getContent(int index) {
-    return index == 0 ? getCynthiaTeam() : getRedTeam();
-  }
+  static List<TeamCardContent> getTeams() => [
+    getCynthiaTeam(),
+    getRedTeam()
+  ];
 
-  TeamCardContent getRedTeam() => TeamCardContent('Champion Red (HG/SS)', [
+  static TeamCardContent getRedTeam() => TeamCardContent('Champion Red (HG/SS)', [
     PokemonIcon('pikachu'),
     PokemonIcon('lapras'),
     PokemonIcon('snorlax'),
@@ -45,7 +49,7 @@ class TeamsRoute extends StatelessWidget {
     PokemonIcon('blastoise'),
   ], isMain: true);
 
-  TeamCardContent getCynthiaTeam() => TeamCardContent('Champion Cynthia', [
+  static TeamCardContent getCynthiaTeam() => TeamCardContent('Champion Cynthia', [
     PokemonIcon('spiritomb'),
     PokemonIcon('roserade'),
     PokemonIcon('gastrodon'),

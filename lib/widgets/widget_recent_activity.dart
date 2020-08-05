@@ -19,8 +19,16 @@ class RecentActivity extends StatelessWidget {
     ],
   );
 
-  PokemonCardContent getLastVisualized() => PokemonCardContent(Image.asset('assets/metagross.png'), 'Metagross');
+  PokemonCardContent getLastVisualized() => PokemonCardContent(
+    Image.asset('assets/metagross.png'),
+    'Metagross',
+    isInteractive: false
+  );
 
-  PokemonCardContent getLastFavorite() => PokemonCardContent(Image.asset('assets/victini.png'), 'Victini');
+  PokemonCardContent getLastFavorite() => PokemonCardContent(
+    Image.asset('assets/victini.png'),
+    'Victini',
+    isInteractive: false
+  );
 
 }
