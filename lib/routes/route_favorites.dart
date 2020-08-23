@@ -9,7 +9,7 @@ class FavoritesRoute extends StatelessWidget {
   final List<PokemonCardContent> _favorites = getFavorites();
 
   @override
-  Widget build(BuildContext context) => MainScreen(
+  Widget build(BuildContext context) => Screen(
     title: 'Meus favoritos',
     child: ListView.builder(
       shrinkWrap: true,

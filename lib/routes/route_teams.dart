@@ -12,7 +12,7 @@ class TeamsRoute extends StatelessWidget {
   final List<TeamCardContent> _teams = getTeams();
 
   @override
-  Widget build(BuildContext context) => MainScreen(
+  Widget build(BuildContext context) => Screen(
     title: 'Meus times',
     child: Container(
       child: Column(

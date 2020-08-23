@@ -5,12 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutterdex/widgets/widget_header.dart';
 import 'package:flutterdex/widgets/widget_space.dart';
 
-class MainScreen extends StatelessWidget {
+class Screen extends StatelessWidget {
 
   final String title;
   final Widget child;
 
-  MainScreen({@required this.title, @required this.child});
+  Screen({@required this.title, @required this.child});
 
   @override
   Widget build(BuildContext context) => Container(

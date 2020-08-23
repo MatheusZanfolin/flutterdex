@@ -8,7 +8,7 @@ import 'package:flutterdex/widgets/widget_search_bar.dart';
 class HomeRoute extends StatelessWidget {
 
   @override
-  Widget build(BuildContext context) => MainScreen(
+  Widget build(BuildContext context) => Screen(
     title: 'Pokédex',
     child: Column(
       children: [
