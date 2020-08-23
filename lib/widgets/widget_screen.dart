@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutterdex/widgets/widget_action_icon.dart';
+import 'package:flutterdex/widgets/widget_action_menu.dart';
+import 'package:flutterdex/widgets/widget_close_icon.dart';
 import 'package:flutterdex/widgets/widget_header.dart';
 import 'package:flutterdex/widgets/widget_space.dart';
 
@@ -10,14 +14,14 @@ class Screen extends StatelessWidget {
   final String title;
   final Widget child;
 
-  final Widget closingIcon;
-  final List<Widget> actionIcons;
+  final CloseIcon closeIcon;
+  final ActionMenu actionMenu;
 
   Screen({
     @required this.title,
     @required this.child,
-    this.closingIcon,
-    this.actionIcons
+    this.closeIcon,
+    this.actionMenu
   });
 
   @override
@@ -25,26 +29,24 @@ class Screen extends StatelessWidget {
     margin: EdgeInsets.fromLTRB(16, MediaQuery.of(context).padding.top, 16, 0),
     child: ListView(
       children: [
-        Row(children: buildHeader()),
+        Row(children: buildHeader(context)),
         Space(size: 16),
         child
       ],
     ),
   );
 
-  List<Widget> buildHeader() {
+  List<Widget> buildHeader(BuildContext context) {
     var header = <Widget>[];
 
-    if (closingIcon != null) {
-      header.add(closingIcon);
+    if (closeIcon != null) {
+      header.add(closeIcon);
     }
 
     header.add(Expanded(child: Header(text: title)));
 
-    if (actionIcons != null) {
-      while (actionIcons.iterator.moveNext()) {
-        header.add(actionIcons.iterator.current);
-      }
+    if (actionMenu != null) {
+      header.add(actionMenu);
     }
 
     return header;
