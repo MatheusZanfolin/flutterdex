@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdex/models/card_content_team.dart';
+import 'package:flutterdex/domains/card_content_team.dart';
 
 class TeamCard extends StatelessWidget {
 

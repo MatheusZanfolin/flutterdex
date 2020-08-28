@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutterdex/models/card_content_pokemon.dart';
+import 'package:flutterdex/domains/card_content_pokemon.dart';
 import 'package:flutterdex/widgets/widget_space.dart';
 
 class PokemonCard extends StatelessWidget {

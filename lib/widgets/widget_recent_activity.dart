@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdex/models/card_content_pokemon.dart';
+import 'package:flutterdex/domains/card_content_pokemon.dart';
 import 'package:flutterdex/widgets/widget_pokemon_card.dart';
 import 'package:flutterdex/widgets/widget_space.dart';
 
