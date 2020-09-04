@@ -32,7 +32,7 @@ abstract class LocalRepository {
   }
 
   @protected
-  Future<int> insert<D>(D data, Serializer<D> serializer, Table table) =>
+  Future<int> insert<D extends Serializable>(D data, Serializer<D> serializer, Table table) =>
     performAtDatabase((db) =>
       db.insert(
         table.getName(),
@@ -42,7 +42,7 @@ abstract class LocalRepository {
     );
 
   @protected
-  Future<List<D>> get<D>(Table table, Deserializer<D> deserializer) =>
+  Future<List<D>> get<D extends Serializable>(Table table, Deserializer<D> deserializer) =>
     performAtDatabase((db) =>
       db.query(
         table.getName()
@@ -52,13 +52,13 @@ abstract class LocalRepository {
     );
 
   @protected
-  Future<int> update<D>(D data, Serializer serializer, Table table, int id) =>
+  Future<int> update<D extends Serializable>(D data, Serializer serializer, Table table) =>
     performAtDatabase((db) =>
       db.update(
         table.getName(),
         serializer.serialize(data),
         where: 'id = ?',
-        whereArgs: [id]
+        whereArgs: [data.id]
       )
     );
 
@@ -90,13 +90,15 @@ abstract class LocalRepository {
 
 }
 
-abstract class Serializer<T> {
+abstract class Serializable<T> { int id; }
+
+abstract class Serializer<T extends Serializable> {
 
   Map<String, Object> serialize(T serializable);
 
 }
 
-abstract class Deserializer<T> {
+abstract class Deserializer<T extends Serializable> {
 
   T deserialize(Map<String, Object> mapped);
 
