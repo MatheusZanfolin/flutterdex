@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutterdex/models/utils/table_creator.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -17,10 +18,24 @@ abstract class LocalDatabase {
 
 abstract class Table {
 
-  String getName();
+  TableStructure getStructure();
 
-  String create();
+}
 
+class TableStructure {
+
+  final String name;
+  final Map<String, FieldType> fields;
+
+  TableStructure(this.name, this.fields);
+
+}
+
+enum FieldType {
+  integer,
+  real,
+  text,
+  blob
 }
 
 abstract class LocalRepository {
@@ -35,7 +50,7 @@ abstract class LocalRepository {
   Future<int> insert<D extends Serializable>(D data, Serializer<D> serializer, Table table) =>
     performAtDatabase((db) =>
       db.insert(
-        table.getName(),
+        table.getStructure().name,
         serializer.serialize(data),
         conflictAlgorithm: ConflictAlgorithm.replace
       )
@@ -45,7 +60,7 @@ abstract class LocalRepository {
   Future<List<D>> get<D extends Serializable>(Table table, Deserializer<D> deserializer) =>
     performAtDatabase((db) =>
       db.query(
-        table.getName()
+        table.getStructure().name
       ).then((result) =>
         Future.value(List.generate(result.length, (i) => deserializer.deserialize(result[i])))
       )
@@ -55,7 +70,7 @@ abstract class LocalRepository {
   Future<int> update<D extends Serializable>(D data, Serializer serializer, Table table) =>
     performAtDatabase((db) =>
       db.update(
-        table.getName(),
+        table.getStructure().name,
         serializer.serialize(data),
         where: 'id = ?',
         whereArgs: [data.id]
@@ -66,7 +81,7 @@ abstract class LocalRepository {
   Future<int> delete(int id, Table table) =>
     performAtDatabase((db) =>
       db.delete(
-        table.getName(),
+        table.getStructure().name,
         where: 'id = ?',
         whereArgs: [id]
       )
@@ -83,7 +98,7 @@ abstract class LocalRepository {
   void _create(Database db, List<Table> tables) {
     var query = StringBuffer();
 
-    tables.forEach((table) { query.write(table.create()); });
+    tables.forEach((table) { query.write(TableCreator(table.getStructure()).getCreationQuery()); });
 
     db.execute(query.toString());
   }

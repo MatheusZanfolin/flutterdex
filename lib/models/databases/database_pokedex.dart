@@ -19,9 +19,8 @@ class PokedexDatabase extends LocalDatabase {
 class FavoritePokemonsTable extends Table {
 
   @override
-  String getName() => 'Favorites';
-
-  @override
-  String create() => 'CREATE TABLE Favorites(id INTEGER PRIMARY KEY, name TEXT);';
+  TableStructure getStructure() => TableStructure('Favorites', {
+    'name': FieldType.text
+  });
 
 }
