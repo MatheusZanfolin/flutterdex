@@ -47,7 +47,7 @@ abstract class LocalRepository {
   }
 
   @protected
-  Future<int> insert<D extends Serializable>(D data, Serializer<D> serializer, Table table) =>
+  Future<int> insert<D extends Serializable>(D data, Table table, Serializer<D> serializer) =>
     performAtDatabase((db) =>
       db.insert(
         table.getStructure().name,
@@ -67,7 +67,7 @@ abstract class LocalRepository {
     );
 
   @protected
-  Future<int> update<D extends Serializable>(D data, Serializer serializer, Table table) =>
+  Future<int> update<D extends Serializable>(D data, Table table, Serializer serializer) =>
     performAtDatabase((db) =>
       db.update(
         table.getStructure().name,
@@ -78,12 +78,12 @@ abstract class LocalRepository {
     );
 
   @protected
-  Future<int> delete(int id, Table table) =>
+  Future<int> delete<D extends Serializable>(D data, Table table) =>
     performAtDatabase((db) =>
       db.delete(
         table.getStructure().name,
         where: 'id = ?',
-        whereArgs: [id]
+        whereArgs: [data.id]
       )
     );
 
