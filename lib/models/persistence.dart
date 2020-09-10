@@ -6,6 +6,20 @@ import 'package:flutterdex/models/utils/table_creator.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+abstract class Serializable<T> { int id; }
+
+abstract class Serializer<T extends Serializable> {
+
+  Map<String, Object> serialize(T serializable);
+
+}
+
+abstract class Deserializer<T extends Serializable> {
+
+  T deserialize(Map<String, Object> mapped);
+
+}
+
 abstract class LocalDatabase {
 
   String getPath();
@@ -50,6 +64,8 @@ extension FieldTypeExtension on FieldType {
   }
 
 }
+
+typedef DatabaseCallback<D> = Future<D> Function(Database);
 
 abstract class LocalRepository {
 
@@ -117,19 +133,3 @@ abstract class LocalRepository {
   }
 
 }
-
-abstract class Serializable<T> { int id; }
-
-abstract class Serializer<T extends Serializable> {
-
-  Map<String, Object> serialize(T serializable);
-
-}
-
-abstract class Deserializer<T extends Serializable> {
-
-  T deserialize(Map<String, Object> mapped);
-
-}
-
-typedef DatabaseCallback<D> = Future<D> Function(Database);
