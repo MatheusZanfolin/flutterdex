@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutterdex/models/utils/table_creator.dart';
 import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class Serializable<T> { int id; }
@@ -131,5 +132,21 @@ abstract class LocalRepository {
 
     db.execute(query.toString());
   }
+
+}
+
+typedef PersistenceCallback<D> = Future<D> Function(SharedPreferences);
+
+class Persistence {
+
+  static Future<SharedPreferences> _getPersistence() async => SharedPreferences.getInstance();
+
+  static Future<D> _performAtPersistenceLayer<D>(PersistenceCallback<D> onPersistenceReady) {
+    return _getPersistence().then(onPersistenceReady);
+  }
+
+  static void save(String string) => _performAtPersistenceLayer((persistence) {
+    // TODO
+  });
 
 }
