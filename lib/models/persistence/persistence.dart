@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:flutterdex/models/persistence/sharedpreferences/persistence_shared_preferences.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -89,6 +90,44 @@ class SharedPreferencesPersistence extends Persistence<SharedPreferences> {
   @override
   Future<SharedPreferences> getPersistence() => SharedPreferences.getInstance();
 
-  // TODO
+  void saveString(SharedPreference key, String value) => perform((preferences) {
+    preferences.setString(key.id, value);
+  });
+
+  void saveInt(SharedPreference key, int value) => perform((preferences) {
+    preferences.setInt(key.id, value);
+  });
+
+  void saveBool(SharedPreference key, bool value) => perform((preferences) {
+    preferences.setBool(key.id, value);
+  });
+
+  void saveDouble(SharedPreference key, double value) => perform((preferences) {
+    preferences.setDouble(key.id, value);
+  });
+
+  void saveStrings(SharedPreference key, List<String> value) => perform((preferences) {
+    preferences.setStringList(key.id, value);
+  });
+
+  void loadString(SharedPreference key, String value) => perform((preferences) {
+    return preferences.getString(key.id);
+  });
+
+  void loadInt(SharedPreference key, int value) => perform((preferences) {
+    return preferences.getInt(key.id);
+  });
+
+  void loadBool(SharedPreference key, bool value) => perform((preferences) {
+    return preferences.getBool(key.id);
+  });
+
+  void loadDouble(SharedPreference key, double value) => perform((preferences) {
+    return preferences.getDouble(key.id);
+  });
+
+  void loadStrings(SharedPreference key, List<String> value) => perform((preferences) {
+    return preferences.getStringList(key.id);
+  });
 
 }
