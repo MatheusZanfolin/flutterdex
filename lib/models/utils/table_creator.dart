@@ -17,40 +17,34 @@ class TableCreator {
     structure.fields.putIfAbsent('id', () => FieldType.integer);
 
     query.write('CREATE TABLE ${structure.name}(');
-    query.write(_getFieldsQuery(structure));
+    query.write(_getFieldsQuery(structure.fields));
     query.write(');');
 
     return query.toString();
   }
 
-  String _getFieldsQuery(TableStructure structure) {
+  String _getFieldsQuery(Map<String, FieldType> fields) {
     var query = StringBuffer();
-    var fields = structure.fields.keys.iterator;
+    var iterator = fields.keys.iterator;
 
-    var hasNext = fields.moveNext();
+    var hasNext = iterator.moveNext();
     while (hasNext) {
-      var field = fields.current;
-      var type = _getTypeName(structure.fields[field]);
+      var field = iterator.current;
+      var type = fields[field].name;
 
       _addFieldSignature(query, field, type);
       _addKeySignature(query, field);
 
-      hasNext = fields.moveNext();
-      if (hasNext) {
-        query.write(', ');
-      }
+      hasNext = iterator.moveNext();
+
+      _addComma(query, hasNext);
     }
 
     return query.toString();
   }
 
-  String _getTypeName(FieldType type) {
-    switch (type) {
-      case FieldType.integer: return 'INTEGER';
-      case FieldType.real: return 'REAL';
-      case FieldType.text: return 'TEXT';
-      default: return 'BLOB';
-    }
+  void _addFieldSignature(StringBuffer query, String field, String type) {
+    query.write('$field $type');
   }
 
   void _addKeySignature(StringBuffer query, String field) {
@@ -59,8 +53,10 @@ class TableCreator {
     }
   }
 
-  void _addFieldSignature(StringBuffer query, String field, String type) {
-    query.write('$field $type');
+  void _addComma(StringBuffer query, bool hasNext) {
+    if (hasNext) {
+      query.write(', ');
+    }
   }
 
 }

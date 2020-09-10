@@ -38,6 +38,19 @@ enum FieldType {
   blob
 }
 
+extension FieldTypeExtension on FieldType {
+
+  String get name {
+    switch (this) {
+      case FieldType.integer: return 'INTEGER';
+      case FieldType.real: return 'REAL';
+      case FieldType.text: return 'TEXT';
+      case FieldType.blob: return 'BLOB';
+    }
+  }
+
+}
+
 abstract class LocalRepository {
 
   LocalDatabase getDatabase();
