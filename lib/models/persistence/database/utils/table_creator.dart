@@ -1,5 +1,5 @@
 
-import '../persistence/database/persistence_database.dart';
+import '../persistence_database.dart';
 
 class TableCreator {
 

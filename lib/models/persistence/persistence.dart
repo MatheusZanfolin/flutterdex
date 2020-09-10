@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'database/persistence_database.dart';
-import '../utils/table_creator.dart';
+import 'database/utils/table_creator.dart';
 
 typedef PersistenceCallback<P> = Function(P);
 
