@@ -1,5 +1,5 @@
 
-import 'package:flutterdex/models/persistence.dart';
+import 'package:flutterdex/models/persistence/database/persistence_database.dart';
 
 class PokedexDatabase extends LocalDatabase {
   

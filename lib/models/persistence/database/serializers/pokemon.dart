@@ -1,6 +1,6 @@
 
 import 'package:flutterdex/domains/pokemon.dart';
-import 'package:flutterdex/models/persistence.dart';
+import 'package:flutterdex/models/persistence/database/persistence_database.dart';
 
 class SerializablePokemon extends Pokemon implements Serializable<Pokemon> {
 

@@ -1,5 +1,5 @@
 
-import 'package:flutterdex/models/persistence.dart';
+import '../persistence/database/persistence_database.dart';
 
 class TableCreator {
 

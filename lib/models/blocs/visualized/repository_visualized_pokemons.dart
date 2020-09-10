@@ -1,10 +1,9 @@
 
-import 'package:flutterdex/models/databases/database_pokedex.dart';
-import 'package:flutterdex/models/persistence.dart';
+import 'package:flutterdex/models/persistence/database/databases/database_pokedex.dart';
+import 'package:flutterdex/models/persistence/persistence.dart';
 
-class VisualizedPokemonsRepository extends LocalRepository {
+class VisualizedPokemonsRepository {
 
-  @override
-  LocalDatabase getDatabase() => PokedexDatabase();
+  final Persistence persistence = DatabasePersistence(PokedexDatabase());
 
 }
