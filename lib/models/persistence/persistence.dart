@@ -110,23 +110,23 @@ class SharedPreferencesPersistence extends Persistence<SharedPreferences> {
     preferences.setStringList(key.id, value);
   });
 
-  void loadString(SharedPreference key, String value) => perform((preferences) {
+  Future<String> loadString(SharedPreference key, String value) => perform((preferences) {
     return preferences.getString(key.id);
   });
 
-  void loadInt(SharedPreference key, int value) => perform((preferences) {
+  Future<int> loadInt(SharedPreference key, int value) => perform((preferences) {
     return preferences.getInt(key.id);
   });
 
-  void loadBool(SharedPreference key, bool value) => perform((preferences) {
+  Future<bool> loadBool(SharedPreference key, bool value) => perform((preferences) {
     return preferences.getBool(key.id);
   });
 
-  void loadDouble(SharedPreference key, double value) => perform((preferences) {
+  Future<double> loadDouble(SharedPreference key, double value) => perform((preferences) {
     return preferences.getDouble(key.id);
   });
 
-  void loadStrings(SharedPreference key, List<String> value) => perform((preferences) {
+  Future<List<String>> loadStrings(SharedPreference key, List<String> value) => perform((preferences) {
     return preferences.getStringList(key.id);
   });
 
