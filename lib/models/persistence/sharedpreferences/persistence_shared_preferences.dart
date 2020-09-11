@@ -2,7 +2,7 @@
 enum SharedPreference {
   lastFavoritePokemon,
   lastSeenPokemon,
-  yourTeam
+  mainTeam
 }
 
 extension SharedPreferenceExtension on SharedPreference {
@@ -11,7 +11,7 @@ extension SharedPreferenceExtension on SharedPreference {
     switch (this) {
       case SharedPreference.lastFavoritePokemon: return "lastFavoritePokemon";
       case SharedPreference.lastSeenPokemon: return "lastSeenPokemon";
-      case SharedPreference.yourTeam: return "yourTeam";
+      case SharedPreference.mainTeam: return "mainTeam";
     }
   }
 
