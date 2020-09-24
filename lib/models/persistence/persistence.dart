@@ -90,25 +90,25 @@ class SharedPreferencesPersistence extends Persistence<SharedPreferences> {
   @override
   Future<SharedPreferences> getPersistence() => SharedPreferences.getInstance();
 
-  void saveString(SharedPreference key, String value) => perform((preferences) {
-    preferences.setString(key.id, value);
-  });
+  Future<bool> saveString(SharedPreference key, String value) => perform (
+      (preferences) => preferences.setString(key.id, value)
+  );
 
-  void saveInt(SharedPreference key, int value) => perform((preferences) {
-    preferences.setInt(key.id, value);
-  });
+  Future<bool> saveInt(SharedPreference key, int value) => perform (
+      (preferences) => preferences.setInt(key.id, value)
+  );
 
-  void saveBool(SharedPreference key, bool value) => perform((preferences) {
-    preferences.setBool(key.id, value);
-  });
+  Future<bool> saveBool(SharedPreference key, bool value) => perform (
+      (preferences) => preferences.setBool(key.id, value)
+  );
 
-  void saveDouble(SharedPreference key, double value) => perform((preferences) {
-    preferences.setDouble(key.id, value);
-  });
+  Future<bool> saveDouble(SharedPreference key, double value) => perform (
+      (preferences) => preferences.setDouble(key.id, value)
+  );
 
-  void saveStrings(SharedPreference key, List<String> value) => perform((preferences) {
-    preferences.setStringList(key.id, value);
-  });
+  Future<bool> saveStrings(SharedPreference key, List<String> value) => perform (
+      (preferences) => preferences.setStringList(key.id, value)
+  );
 
   Future<String> loadString(SharedPreference key) => perform((preferences) {
     return preferences.getString(key.id);

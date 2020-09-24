@@ -7,8 +7,8 @@ class VisualizedPokemonsRepository {
 
   final _persistence = SharedPreferencesPersistence();
 
-  void saveLastVisualizedPokemonId(String id) {
-    _persistence.saveString(SharedPreference.lastSeenPokemon, id);
+  Future<bool> saveLastVisualizedPokemonId(String id) {
+    return _persistence.saveString(SharedPreference.lastSeenPokemon, id);
   }
 
   Future<String> getLastVisualizedPokemonId() {

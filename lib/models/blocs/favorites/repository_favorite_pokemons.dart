@@ -7,8 +7,8 @@ class FavoritePokemonsRepository {
 
   final _persistence = SharedPreferencesPersistence();
 
-  void saveLastFavoritePokemonId(String id) {
-    _persistence.saveString(SharedPreference.lastFavoritePokemon, id);
+  Future<bool> saveLastFavoritePokemonId(String id) {
+    return _persistence.saveString(SharedPreference.lastFavoritePokemon, id);
   }
 
   Future<String> getLastFavoritePokemonId() {

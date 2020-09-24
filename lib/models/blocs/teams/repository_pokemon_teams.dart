@@ -7,8 +7,8 @@ class PokemonTeamsRepository {
 
   final _persistence = SharedPreferencesPersistence();
 
-  void saveMainTeamId(String id) {
-    _persistence.saveString(SharedPreference.mainTeam, id);
+  Future<bool> saveMainTeamId(String id) {
+    return _persistence.saveString(SharedPreference.mainTeam, id);
   }
 
   Future<String> getMainTeamId() {
