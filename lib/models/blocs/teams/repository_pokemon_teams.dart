@@ -5,14 +5,14 @@ import 'package:flutterdex/models/persistence/sharedpreferences/persistence_shar
 
 class PokemonTeamsRepository {
 
-  final persistence = SharedPreferencesPersistence();
+  final _persistence = SharedPreferencesPersistence();
 
   void saveMainTeamId(String id) {
-    persistence.saveString(SharedPreference.mainTeam, id);
+    _persistence.saveString(SharedPreference.mainTeam, id);
   }
 
   Future<String> getLastFavoritePokemonId() {
-    return persistence.loadString(SharedPreference.mainTeam);
+    return _persistence.loadString(SharedPreference.mainTeam);
   }
 
 }
