@@ -15,4 +15,6 @@ class FavoritePokemonsRepository {
     return _persistence.loadString(SharedPreference.lastFavoritePokemon);
   }
 
+  // TODO Implement favorites management logic
+
 }

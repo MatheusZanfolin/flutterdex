@@ -11,8 +11,10 @@ class PokemonTeamsRepository {
     _persistence.saveString(SharedPreference.mainTeam, id);
   }
 
-  Future<String> getLastFavoritePokemonId() {
+  Future<String> getMainTeamId() {
     return _persistence.loadString(SharedPreference.mainTeam);
   }
+
+  // TODO Implement team management logic
 
 }
