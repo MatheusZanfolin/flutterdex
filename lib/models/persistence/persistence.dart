@@ -30,6 +30,8 @@ class DatabasePersistence extends Persistence<Database> {
   @override
   Future<Database> getPersistence() => _open(database);
 
+  // TODO Return updated entity at setter methods
+
   Future<int> insert<D extends Serializable>(D data, Table table, Serializer<D> serializer) =>
     perform((db) =>
       db.insert(
