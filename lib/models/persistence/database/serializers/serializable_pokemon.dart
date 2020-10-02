@@ -11,17 +11,13 @@ class SerializablePokemon extends Pokemon implements Serializable<Pokemon> {
 
 }
 
-class PokemonSerializer extends Serializer<SerializablePokemon> {
+class PokemonSerializer implements Serializer<SerializablePokemon>, Deserializer<SerializablePokemon> {
 
   @override
   Map<String, Object> serialize(SerializablePokemon serializable) => {
     "id": serializable.id,
     "name": serializable.name
   };
-
-}
-
-class PokemonDeserializer extends Deserializer<SerializablePokemon> {
 
   @override
   SerializablePokemon deserialize(Map<String, Object> mapped) => SerializablePokemon(
