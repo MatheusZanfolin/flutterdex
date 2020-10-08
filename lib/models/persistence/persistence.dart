@@ -30,9 +30,7 @@ class DatabasePersistence extends Persistence<Database> {
   @override
   Future<Database> getPersistence() => _open(database);
 
-  // TODO Return updated entity at setter methods
-
-  Future<int> insert<D extends Serializable>(D data, Table table, Serializer<D> serializer) =>
+  Future<int> insert<D extends Serializable<D>>(D data, Table table, Serializer<D> serializer) =>
     perform((db) =>
       db.insert(
         table.getStructure().name,
@@ -41,7 +39,7 @@ class DatabasePersistence extends Persistence<Database> {
       )
     );
 
-  Future<List<D>> get<D extends Serializable>(Table table, Deserializer<D> deserializer) =>
+  Future<List<D>> get<D extends Serializable<D>>(Table table, Deserializer<D> deserializer) =>
     perform((db) =>
       db.query(
         table.getStructure().name
@@ -50,7 +48,7 @@ class DatabasePersistence extends Persistence<Database> {
       )
     );
 
-  Future<int> update<D extends Serializable>(D data, Table table, Serializer serializer) =>
+  Future<int> update<D extends Serializable<D>>(D data, Table table, Serializer<D> serializer) =>
     perform((db) =>
       db.update(
         table.getStructure().name,
@@ -60,7 +58,7 @@ class DatabasePersistence extends Persistence<Database> {
       )
     );
 
-  Future<int> delete<D extends Serializable>(D data, Table table) =>
+  Future<int> delete<D extends Serializable<D>>(D data, Table table) =>
     perform((db) =>
       db.delete(
         table.getStructure().name,
