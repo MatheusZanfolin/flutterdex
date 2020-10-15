@@ -1,20 +1,36 @@
 
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutterdex/domains/pokemon.dart';
 import 'package:flutterdex/models/persistence/database/databases/database_pokedex.dart';
+import 'package:flutterdex/models/persistence/database/serializers/serializer_pokemon.dart';
 import 'package:flutterdex/models/persistence/persistence.dart';
 import 'package:flutterdex/models/persistence/sharedpreferences/persistence_shared_preferences.dart';
 
 class FavoritePokemonsRepository {
 
-  final _persistence = SharedPreferencesPersistence();
+  final _preferences = SharedPreferencesPersistence();
+  final _database = DatabasePersistence(PokedexDatabase());
 
   Future<bool> saveLastFavoritePokemonId(String id) {
-    return _persistence.saveString(SharedPreference.lastFavoritePokemon, id);
+    return _preferences.saveString(SharedPreference.lastFavoritePokemon, id);
   }
 
   Future<String> getLastFavoritePokemonId() {
-    return _persistence.loadString(SharedPreference.lastFavoritePokemon);
+    return _preferences.loadString(SharedPreference.lastFavoritePokemon);
   }
 
-  // TODO Implement favorites management logic
+  Future<void> saveFavorite(Pokemon pokemon) {
+    return _database.insert(pokemon, FavoritePokemonsTable(), PokemonSerializer());
+  }
+
+  Future<void> deleteFavorite(Pokemon pokemon) {
+    return _database.delete(pokemon, FavoritePokemonsTable());
+  }
+
+  Future<List<Pokemon>> loadFavorites() {
+    return _database.get(FavoritePokemonsTable(), PokemonSerializer());
+  }
 
 }

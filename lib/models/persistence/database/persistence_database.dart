@@ -1,5 +1,11 @@
 
-abstract class Serializable<T> { int id; }
+abstract class Serializable {
+
+  final int id;
+
+  Serializable(this.id);
+
+}
 
 abstract class Serializer<T extends Serializable> {
 
@@ -25,7 +31,9 @@ abstract class LocalDatabase {
 
 abstract class Table {
 
-  TableStructure getStructure();
+  final TableStructure structure;
+
+  Table(this.structure);
 
 }
 

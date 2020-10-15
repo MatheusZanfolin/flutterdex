@@ -18,9 +18,8 @@ class PokedexDatabase extends LocalDatabase {
 
 class FavoritePokemonsTable extends Table {
 
-  @override
-  TableStructure getStructure() => TableStructure('Favorites', {
-    'name': FieldType.text
-  });
+  FavoritePokemonsTable() : super (
+    TableStructure('Favorites', {'name': FieldType.text })
+  );
 
 }

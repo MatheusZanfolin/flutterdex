@@ -5,8 +5,8 @@ class TableCreator {
 
   final query = StringBuffer();
 
-  TableCreator(TableStructure structure) {
-    query.write(_getCreationQuery(structure));
+  TableCreator(Table table) {
+    query.write(_getCreationQuery(table.structure));
   }
 
   String getCreationQuery() => query.toString();

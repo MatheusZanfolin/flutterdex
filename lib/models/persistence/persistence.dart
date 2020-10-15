@@ -30,38 +30,38 @@ class DatabasePersistence extends Persistence<Database> {
   @override
   Future<Database> getPersistence() => _open(database);
 
-  Future<int> insert<D extends Serializable<D>>(D data, Table table, Serializer<D> serializer) =>
+  Future<int> insert<D extends Serializable>(D data, Table table, Serializer<D> serializer) =>
     perform((db) =>
       db.insert(
-        table.getStructure().name,
+        table.structure.name,
         serializer.serialize(data),
         conflictAlgorithm: ConflictAlgorithm.replace
       )
     );
 
-  Future<List<D>> get<D extends Serializable<D>>(Table table, Deserializer<D> deserializer) =>
+  Future<List<D>> get<D extends Serializable>(Table table, Deserializer<D> deserializer) =>
     perform((db) =>
       db.query(
-        table.getStructure().name
+        table.structure.name
       ).then((result) =>
         Future.value(List.generate(result.length, (i) => deserializer.deserialize(result[i])))
       )
     );
 
-  Future<int> update<D extends Serializable<D>>(D data, Table table, Serializer<D> serializer) =>
+  Future<int> update<D extends Serializable>(D data, Table table, Serializer<D> serializer) =>
     perform((db) =>
       db.update(
-        table.getStructure().name,
+        table.structure.name,
         serializer.serialize(data),
         where: 'id = ?',
         whereArgs: [data.id]
       )
     );
 
-  Future<int> delete<D extends Serializable<D>>(D data, Table table) =>
+  Future<int> delete<D extends Serializable>(D data, Table table) =>
     perform((db) =>
       db.delete(
-        table.getStructure().name,
+        table.structure.name,
         where: 'id = ?',
         whereArgs: [data.id]
       )
@@ -78,7 +78,7 @@ class DatabasePersistence extends Persistence<Database> {
   void _create(Database db, List<Table> tables) {
     var query = StringBuffer();
 
-    tables.forEach((table) { query.write(TableCreator(table.getStructure()).getCreationQuery()); });
+    tables.forEach((table) { query.write(TableCreator(table).getCreationQuery()); });
 
     db.execute(query.toString());
   }
