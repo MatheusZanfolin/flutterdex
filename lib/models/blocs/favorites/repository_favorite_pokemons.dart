@@ -22,7 +22,7 @@ class FavoritePokemonsRepository {
   }
 
   Future<void> saveFavorite(Pokemon pokemon) {
-    return _database.insert(pokemon, FavoritePokemonsTable(), PokemonSerializer());
+    return _database.insert(pokemon, FavoritePokemonsTable(), PokemonSerializer.get());
   }
 
   Future<void> deleteFavorite(Pokemon pokemon) {
@@ -30,7 +30,7 @@ class FavoritePokemonsRepository {
   }
 
   Future<List<Pokemon>> loadFavorites() {
-    return _database.get(FavoritePokemonsTable(), PokemonSerializer());
+    return _database.get(FavoritePokemonsTable(), PokemonSerializer.get());
   }
 
 }
